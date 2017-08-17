@@ -4,14 +4,15 @@ import { Hero } from './hero';
 @Component({
     selector: 'hero-detail',
     template: `
-    <div *ngIf="hero">
-      <h2>{{hero.name}} details!</h2>
+    <md-card *ngIf="hero">
+      <md-card-title>{{hero.name}} details!</md-card-title>
       <div><label>id: </label>{{hero.id}}</div>
       <div>
-        <label>name: </label>
-        <input [(ngModel)]="hero.name" placeholder="name">
+        <md-input-container>
+          <input mdInput [(ngModel)]="hero.name" placeholder="name">
+        </md-input-container>
       </div>
-    </div>`
+    </md-card>`
 })
 
 export class HeroDetailComponent {

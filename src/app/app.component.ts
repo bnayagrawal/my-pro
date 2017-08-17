@@ -2,73 +2,53 @@ import { Component } from '@angular/core';
 import { Hero } from './hero';
 import { HeroService } from './hero.service';
 import { OnInit } from '@angular/core';
+import { ToolbarMultirowExample } from './toolbar.component';
 
 @Component({
   selector: 'my-app',
   template: `
-    <h1>{{title}}</h1>
-    <h2>My Heroes</h2>
-    <ul class="heroes">
-      <li *ngFor="let hero of heroes" (click)="onSelect(hero)" [class.selected]="hero === selectedHero">
-        <!-- each hero goes here -->
-        <span class="badge">{{hero.id}}</span> {{hero.name}}
-      </li>
-    </ul>
-  <hero-detail [hero]="selectedHero"></hero-detail>`,
+    <toolbar-multirow-example></toolbar-multirow-example>
+    <md-grid-list cols="2" rowHeight="1:1">
+      <md-grid-tile>
+        <md-card>
+          <md-card-title>My Heroes</md-card-title>
+          <md-list>
+            <md-list-item *ngFor="let hero of heroes" (click)="onSelect(hero)" [class.selected]="hero === selectedHero">
+              <md-icon aria-label="Person_Pin" class="material-icons" md-list-icon>person_pin</md-icon>
+              <h3 md-line> {{hero.name}} </h3>
+              <p md-line>
+                <span> {{hero.id}} </span>
+              </p>
+            </md-list-item>
+          </md-list>
+        </md-card>
+      </md-grid-tile>
+      
+      <md-grid-tile>
+        <hero-detail [hero]="selectedHero"></hero-detail>
+      </md-grid-tile>
+    </md-grid-list>`,
   styles: [`
+    md-grid-list {
+      margin:1rem;
+    }
+
     .selected {
-      background-color: #CFD8DC !important;
-      color: white;
+      background-color: #f5f5f5 !important;
     }
-    .heroes {
-      margin: 0 0 2em 0;
-      list-style-type: none;
-      padding: 0;
-      width: 15em;
+
+    md-list-item:hover {
+      background-color: #f5f5f5;
     }
-    .heroes li {
+    
+    md-list-item {
       cursor: pointer;
-      position: relative;
-      left: 0;
-      background-color: #EEE;
-      margin: .5em;
-      padding: .3em 0;
-      height: 1.6em;
-      border-radius: 4px;
     }
-    .heroes li.selected:hover {
-      background-color: #BBD8DC !important;
-      color: white;
-    }
-    .heroes li:hover {
-      color: #607D8B;
-      background-color: #DDD;
-      left: .1em;
-    }
-    .heroes .text {
-      position: relative;
-      top: -3px;
-    }
-    .heroes .badge {
-      display: inline-block;
-      font-size: small;
-      color: white;
-      padding: 0.8em 0.7em 0 0.7em;
-      background-color: #607D8B;
-      line-height: 1em;
-      position: relative;
-      left: -1px;
-      top: -4px;
-      height: 1.8em;
-      margin-right: .8em;
-      border-radius: 4px 0 0 4px;
-    } 
   `],
   providers: [HeroService]
 })
 
 export class AppComponent implements OnInit { 
-  title = 'Tour of Heroes';
   heroes: Hero[];
   selectedHero: Hero;
   onSelect(hero: Hero): void {

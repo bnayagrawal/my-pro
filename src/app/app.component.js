@@ -13,7 +13,6 @@ var hero_service_1 = require("./hero.service");
 var AppComponent = (function () {
     function AppComponent(heroService) {
         this.heroService = heroService;
-        this.title = 'Tour of Heroes';
     }
     AppComponent.prototype.onSelect = function (hero) {
         this.selectedHero = hero;
@@ -30,8 +29,8 @@ var AppComponent = (function () {
 AppComponent = __decorate([
     core_1.Component({
         selector: 'my-app',
-        template: "\n    <h1>{{title}}</h1>\n    <h2>My Heroes</h2>\n    <ul class=\"heroes\">\n      <li *ngFor=\"let hero of heroes\" (click)=\"onSelect(hero)\" [class.selected]=\"hero === selectedHero\">\n        <!-- each hero goes here -->\n        <span class=\"badge\">{{hero.id}}</span> {{hero.name}}\n      </li>\n    </ul>\n  <hero-detail [hero]=\"selectedHero\"></hero-detail>",
-        styles: ["\n    .selected {\n      background-color: #CFD8DC !important;\n      color: white;\n    }\n    .heroes {\n      margin: 0 0 2em 0;\n      list-style-type: none;\n      padding: 0;\n      width: 15em;\n    }\n    .heroes li {\n      cursor: pointer;\n      position: relative;\n      left: 0;\n      background-color: #EEE;\n      margin: .5em;\n      padding: .3em 0;\n      height: 1.6em;\n      border-radius: 4px;\n    }\n    .heroes li.selected:hover {\n      background-color: #BBD8DC !important;\n      color: white;\n    }\n    .heroes li:hover {\n      color: #607D8B;\n      background-color: #DDD;\n      left: .1em;\n    }\n    .heroes .text {\n      position: relative;\n      top: -3px;\n    }\n    .heroes .badge {\n      display: inline-block;\n      font-size: small;\n      color: white;\n      padding: 0.8em 0.7em 0 0.7em;\n      background-color: #607D8B;\n      line-height: 1em;\n      position: relative;\n      left: -1px;\n      top: -4px;\n      height: 1.8em;\n      margin-right: .8em;\n      border-radius: 4px 0 0 4px;\n    } \n  "],
+        template: "\n    <toolbar-multirow-example></toolbar-multirow-example>\n    <md-grid-list cols=\"2\" rowHeight=\"1:1\">\n      <md-grid-tile>\n        <md-card>\n          <md-card-title>My Heroes</md-card-title>\n          <md-list>\n            <md-list-item *ngFor=\"let hero of heroes\" (click)=\"onSelect(hero)\" [class.selected]=\"hero === selectedHero\">\n              <md-icon aria-label=\"Person_Pin\" class=\"material-icons\" md-list-icon>person_pin</md-icon>\n              <h3 md-line> {{hero.name}} </h3>\n              <p md-line>\n                <span> {{hero.id}} </span>\n              </p>\n            </md-list-item>\n          </md-list>\n        </md-card>\n      </md-grid-tile>\n      \n      <md-grid-tile>\n        <hero-detail [hero]=\"selectedHero\"></hero-detail>\n      </md-grid-tile>\n    </md-grid-list>",
+        styles: ["\n    md-grid-list {\n      margin:1rem;\n    }\n\n    .selected {\n      background-color: #f5f5f5 !important;\n    }\n\n    md-list-item:hover {\n      background-color: #f5f5f5;\n    }\n    \n    md-list-item {\n      cursor: pointer;\n    }\n  "],
         providers: [hero_service_1.HeroService]
     }),
     __metadata("design:paramtypes", [hero_service_1.HeroService])
