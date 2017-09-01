@@ -8,22 +8,24 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var hero_1 = require("./hero");
 var HeroDetailComponent = (function () {
     function HeroDetailComponent() {
     }
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", hero_1.Hero)
+    ], HeroDetailComponent.prototype, "hero", void 0);
+    HeroDetailComponent = __decorate([
+        core_1.Component({
+            selector: 'hero-detail',
+            template: "\n    <md-card *ngIf=\"hero\" cols=\"1\" rows=\"1\">\n      <md-card-title>{{hero.name}} details!</md-card-title>\n        <md-input-container>\n          <input mdInput placeholder=\"id:\" disabled value=\"{{hero.id}}\">\n        </md-input-container>\n        <md-input-container>\n          <input mdInput [(ngModel)]=\"hero.name\" placeholder=\"name\">\n        </md-input-container>\n    </md-card>",
+            styles: ["\n        md-card {\n          margin:1rem;\n        }\n      "]
+        })
+    ], HeroDetailComponent);
     return HeroDetailComponent;
 }());
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", hero_1.Hero)
-], HeroDetailComponent.prototype, "hero", void 0);
-HeroDetailComponent = __decorate([
-    core_1.Component({
-        selector: 'hero-detail',
-        template: "\n    <md-card *ngIf=\"hero\">\n      <md-card-title>{{hero.name}} details!</md-card-title>\n      <div><label>id: </label>{{hero.id}}</div>\n      <div>\n        <md-input-container>\n          <input mdInput [(ngModel)]=\"hero.name\" placeholder=\"name\">\n        </md-input-container>\n      </div>\n    </md-card>"
-    })
-], HeroDetailComponent);
 exports.HeroDetailComponent = HeroDetailComponent;
 //# sourceMappingURL=hero-detail.component.js.map
